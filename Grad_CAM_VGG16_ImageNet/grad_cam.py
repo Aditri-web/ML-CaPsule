@@ -52,7 +52,7 @@ files.upload()  # Upload your kaggle.json here
 import os
 
 # Paste your API token here (the one you just copied)
-KAGGLE_TOKEN = "KGAT_d5508e77030136fba01282c937c8313d"  # ← Replace with YOUR token
+KAGGLE_TOKEN = "YOUR_KAGGLE_API_TOKEN_HERE"  # ← Replace with YOUR token from kaggle.com/settings/account
 
 # Set as environment variable
 os.environ['KAGGLE_API_TOKEN'] = KAGGLE_TOKEN
