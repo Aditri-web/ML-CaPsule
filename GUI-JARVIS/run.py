@@ -227,7 +227,7 @@ class mainT(QThread):
                     pass
 
             elif ('weather' in self.query or 'temperature' in self.query):
-                api_key = "54b1b9aeefe8b01a10b622d47828ef3d"
+                api_key = "YOUR_OPENWEATHERMAP_API_KEY_HERE"
                 base_url = "http://api.openweathermap.org/data/2.5/weather?"
                 speak("which city sir")
                 city_name = self.JTT()

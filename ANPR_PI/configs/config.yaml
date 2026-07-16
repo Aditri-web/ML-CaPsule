@@ -33,7 +33,7 @@ io:
   multi_camera: false  # Disable for testing
   cameras:
     in:  # Entry camera
-      source: "rtsp://username:password@192.168.1.108:554/cam/realmonitor?channel=1&subtype=1"
+      source: "rtsp://YOUR_RTSP_USERNAME:YOUR_RTSP_PASSWORD@192.168.1.108:554/cam/realmonitor?channel=1&subtype=1"
       camera_type: "in"  # "in" for entry, "out" for exit
       enabled: true
     out:  # Exit camera
