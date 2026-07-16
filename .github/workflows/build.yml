@@ -6,16 +6,19 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    - cron:  '5 * * * *'  
+    - cron:  '5 * * * *'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        token: ${{ secrets.GH_TOKEN }}
+        # Falls back to the always-available GITHUB_TOKEN if GH_TOKEN secret is not set
+        token: ${{ secrets.GH_TOKEN || github.token }}
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -32,7 +35,8 @@ jobs:
         python -m pip install -r requirements.txt
     - name: Update README.md
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        # Falls back to GITHUB_TOKEN if GH_TOKEN is not configured as a repo secret
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN || github.token }}
       run: |-
         python build_readme.py
         cat README.md
