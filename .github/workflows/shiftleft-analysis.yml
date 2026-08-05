@@ -1,14 +1,14 @@
 # This workflow integrates Scan with GitHub's code scanning feature
-# Scan is a free open-source security tool for modern DevOps teams from ShiftLeft
+# Scan is a free open-source security tool for modern DevOps teams
 # Visit https://slscan.io/en/latest/integrations/code-scan for help
 name: SL Scan
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, main ]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ master ]
+    branches: [ master, main ]
   schedule:
     - cron: '23 16 * * 1'
 
@@ -25,14 +25,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    # Instructions
-    # 1. Setup JDK, Node.js, Python etc depending on your project type
-    # 2. Compile or build the project before invoking scan
-    #    Example: mvn compile, or npm install or pip install goes here
-    # 3. Invoke Scan with the github token. Leave the workspace empty to use relative url
+      with:
+        fetch-depth: 0
 
     - name: Perform Scan
-      uses: ShiftLeftSecurity/scan-action@master
+      uses: AppThreat/scan-action@master
       env:
         WORKSPACE: ""
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -43,5 +40,7 @@ jobs:
 
     - name: Upload report
       uses: github/codeql-action/upload-sarif@v3
+      if: always()
       with:
         sarif_file: reports
+
