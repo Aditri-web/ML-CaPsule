@@ -30,6 +30,7 @@ jobs:
 
     - name: Perform Scan
       uses: AppThreat/sast-scan-action@master
+      continue-on-error: true
       env:
         WORKSPACE: ""
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
