@@ -29,7 +29,7 @@ jobs:
         fetch-depth: 0
 
     - name: Perform Scan
-      uses: AppThreat/scan-action@master
+      uses: AppThreat/sast-scan-action@master
       env:
         WORKSPACE: ""
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
